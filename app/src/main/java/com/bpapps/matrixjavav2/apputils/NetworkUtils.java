@@ -15,20 +15,17 @@ import com.bpapps.matrixjavav2.App;
 
 public class NetworkUtils {
     private Context mContext;
-    private boolean mIsWifiConnected;
-    private boolean mIsTransporterConnected;
 
     private IOnDataConnectivityChangedListener mCallBack;
 
     private ConnectivityManager.NetworkCallback mNetworkCallback = new ConnectivityManager.NetworkCallback() {
         @Override
         public void onAvailable(@NonNull Network network) {
-            updateConnectivityStatus();
             if (mCallBack != null) {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        mCallBack.onConnectivityChanged(isConnected());
+                        mCallBack.onConnectivityChanged(true);
                     }
                 });
             }
@@ -36,12 +33,11 @@ public class NetworkUtils {
 
         @Override
         public void onLost(@NonNull Network network) {
-            updateConnectivityStatus();
-            if (mCallBack != null && !isConnected()) {
+            if (mCallBack != null) {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        mCallBack.onConnectivityChanged(isConnected());
+                        mCallBack.onConnectivityChanged(false);
                     }
                 });
             }
@@ -51,57 +47,28 @@ public class NetworkUtils {
 
     public NetworkUtils(@NonNull Context context) {
         mContext = context;
-        updateConnectivityStatus();
     }
 
-//    public boolean isConnected(Network network) {
-//        ConnectivityManager cm = ContextCompat.getSystemService(mContext, ConnectivityManager.class);
-//
-//        if (cm != null) {
-//            NetworkCapabilities nc = cm.getNetworkCapabilities(network);
-//
-//            if (nc != null) {
-//                if (nc.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-//                    return true;
-//                } else if (nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-//                    return true;
-//                } else return nc.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET);
-//            } else {
-//                return false;
-//            }
-//        } else {
-//            return false;
-//        }
-//    }
-
-    private boolean updateConnectivityStatus() {
+    public boolean isConnected() {
         ConnectivityManager cm = ContextCompat.getSystemService(mContext, ConnectivityManager.class);
 
         if (cm != null) {
             NetworkCapabilities nc = cm.getNetworkCapabilities(cm.getActiveNetwork());
 
             if (nc != null) {
-                mIsTransporterConnected = nc.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR);
-                mIsWifiConnected = nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+                if (nc.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    return true;
+                } else if (nc.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    return true;
+                } else return nc.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET);
             } else {
-                mIsTransporterConnected = false;
-                mIsWifiConnected = false;
+                return false;
             }
         } else {
-            mIsTransporterConnected = false;
-            mIsWifiConnected = false;
+            return false;
         }
-
-        return isConnected();
     }
 
-    private boolean isConnected() {
-        return  mIsTransporterConnected || mIsWifiConnected;
-    }
-
-    public boolean getConnectivityStatus() {
-        return updateConnectivityStatus();
-    }
 
     public interface IOnDataConnectivityChangedListener {
         void onConnectivityChanged(boolean isConnected);

@@ -11,7 +11,7 @@ public class ConnectivityHandler implements NetworkUtils.IOnDataConnectivityChan
     private IOnDataConnectivityChangedListener mCallBack = null;
 
     public boolean getConnectivityStatus() {
-        return mNetworkUtils.getConnectivityStatus();
+        return mNetworkUtils.isConnected();
     }
 
     @Override

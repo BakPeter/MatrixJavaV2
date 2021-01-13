@@ -45,8 +45,8 @@ public class MainViewFragment extends Fragment implements MainViewViewModel.IOnD
         super.onViewCreated(view, savedInstanceState);
 
         boolean isConnected = mViewModel.getConnectivityStatus();
-        Toast.makeText(requireContext(), isConnected ? "connected" : "not connected", Toast.LENGTH_SHORT).show();
-        Log.d(TAG, isConnected ? "connected" : "not connected");
+        Toast.makeText(requireContext(), "onCreateView() : " + (isConnected ? "connected" : "not connected"), Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onCreateView() : " + (isConnected ? "connected" : "not connected"));
     }
 
     @Override
@@ -64,7 +64,7 @@ public class MainViewFragment extends Fragment implements MainViewViewModel.IOnD
 
     @Override
     public void onConnectivityChanged(boolean isConnected) {
-        Toast.makeText(requireContext(), isConnected ? "connected" : "not connected", Toast.LENGTH_SHORT).show();
-        Log.d(TAG, isConnected ? "connected" : "not connected");
+        Toast.makeText(requireContext(), "onConnectivityChanged() + " + (isConnected ? "connected" : "not connected"), Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onConnectivityChanged() + " + (isConnected ? "connected" : "not connected"));
     }
 }
