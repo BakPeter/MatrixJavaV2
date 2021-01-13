@@ -81,6 +81,15 @@ public class Model implements Repository.IOnDataConnectivityChangedListener, Rep
         mRepository.unRegisterForDataLoadListener();
     }
 
+    public List<DataListObject> getItemsByCategory(int categoryInd) {
+        return mRepository.getItemsByCategory(categoryInd);
+    }
+
+    public String getCategoryTitle(int categoryInd) {
+        return mRepository.getCategoryTitle(categoryInd);
+    }
+
+
     public interface IOnDataConnectivityChangedListener {
         void onConnectivityChanged(boolean isConnected);
     }

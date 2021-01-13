@@ -19,55 +19,19 @@ public class MainViewViewModel extends ViewModel implements Model.IOnDataConnect
     private Model mModel = Model.getInstance();
 
     private boolean mConnectivityStatus;
-    private List<DataListCat> mCategories = null;
-    private HashMap<Integer, ArrayList<DataListObject>> mItemsByCategories = null;
 
     private IOnDataConnectivityChangedListener mConnectivityChangedCallBack = null;
     private IDataLoadListener mDataLoadCallback = null;
 
-    public List<DataListObject> getItemsByCategory(int categoryPosition) {
-        if (mItemsByCategories == null) {
-            mItemsByCategories = new HashMap<>();
-        }
-
-        List<DataListObject> items = mModel.getItems();
-        if (items != null && items.size() > 0) {
-            Integer currCategoryId;
-            for (int i = 0; i < items.size(); i++) {
-                currCategoryId = items.get(i).getCatId();
-
-                if (!mItemsByCategories.containsKey(currCategoryId)) {
-                    mItemsByCategories.put(currCategoryId, new ArrayList<DataListObject>());
-                }
-
-                mItemsByCategories.get(currCategoryId).add(items.get(i));
-            }
-        } else {
-            return new ArrayList<>();
-        }
-
-        return mItemsByCategories.get(mCategories.get(categoryPosition).getCatId());
+    public List<DataListObject> getItemsByCategory(int categoryInd) {
+        return mModel.getItemsByCategory(categoryInd);
     }
 
     public String getCategoryTitle(int categoryInd) {
-        if (mCategories == null) {
-            List<DataListCat> categories = mModel.getCategories();
-            if (categories != null) {
-                mCategories = categories;
-            }
-        }
+        String categoryTitle = mModel.getCategoryTitle(categoryInd);
 
-        String categoryTitle;
-        if (mCategories != null && mCategories.size() != 0) {
-            if (categoryInd < 0 || (categoryInd > mCategories.size() - 1)) {
-                categoryTitle = App.getAppContext().getResources().getString(R.string.default_category_title) + " " + categoryInd;
-            } else {
-                categoryTitle = mCategories.get(categoryInd).getCategoryTitle();
-            }
-        } else {
+        if (categoryTitle == null) {
             categoryTitle = App.getAppContext().getResources().getString(R.string.default_category_title) + " " + categoryInd;
-
-//            categoryTitle = App.getAppContext().getResources().getString(R.string.default_category_title);
         }
 
         return categoryTitle;
@@ -91,10 +55,20 @@ public class MainViewViewModel extends ViewModel implements Model.IOnDataConnect
 
     @Override
     public void onLoadSuccess(Result result) {
-        updateCategories(result.getDataObject().getDataListCat());
-        updateItems(result.getDataObject().getDataListObject());
+        List<DataListCat> categories = result.getDataObject().getDataListCat();
+        HashMap<Integer, ArrayList<DataListObject>> items = new HashMap<>(categories.size());
 
-        mDataLoadCallback.onLoadSuccess(mCategories, mItemsByCategories);
+        for (DataListCat cat :
+                categories) {
+            items.put(cat.getCatId(), new ArrayList<DataListObject>());
+        }
+
+        for (DataListObject item :
+                result.getDataObject().getDataListObject()) {
+            items.get(item.getCatId()).add(item);
+        }
+
+        mDataLoadCallback.onLoadSuccess(categories, items);
     }
 
     @Override
@@ -103,37 +77,6 @@ public class MainViewViewModel extends ViewModel implements Model.IOnDataConnect
             mDataLoadCallback.onLoadFailure(error);
         }
     }
-
-    private void updateItems(List<DataListObject> items) {
-        Integer currId;
-        for (int i = 0; i < mCategories.size(); i++) {
-            currId = mCategories.get(i).getCatId();
-            if (mItemsByCategories.containsKey(currId)) {
-                mItemsByCategories.clear();
-            } else {
-                mItemsByCategories.put(currId, new ArrayList<DataListObject>());
-            }
-        }
-
-        for (DataListObject item :
-                items) {
-            if (!mItemsByCategories.containsKey(item.getCatId())) {
-                mItemsByCategories.put(item.getCatId(), new ArrayList<DataListObject>());
-            }
-
-            mItemsByCategories.get(item.getCatId()).add(item);
-        }
-    }
-
-    private void updateCategories(List<DataListCat> categories) {
-        if (mCategories != null) {
-            mCategories.clear();
-            mCategories.addAll(categories);
-        } else {
-            mCategories = new ArrayList<>(categories);
-        }
-    }
-
 
     public void registerForConnectivityUpdateListener(@NonNull IOnDataConnectivityChangedListener callBack) {
         mModel.registerForConnectivityUpdateListener(this);

@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Repository implements ConnectivityHandler.IOnDataConnectivityChangedListener {
@@ -160,6 +161,33 @@ public class Repository implements ConnectivityHandler.IOnDataConnectivityChange
         mConnectivityHandler.unRegisterForConnectivityUpdateListener();
         mConnectivityChangedCallBack = null;
     }
+
+    public List<DataListObject> getItemsByCategory(int categoryInd) {
+        List<DataListObject> retVal = new ArrayList<>();
+
+        if (mResult != null) {
+            int catId = mResult.getDataObject().getDataListCat().get(categoryInd).getCatId();
+
+            for (DataListObject item :
+                    mResult.getDataObject().getDataListObject()) {
+                if (item.getCatId() == catId) {
+                    retVal.add(item);
+                }
+            }
+        }
+
+        return retVal;
+    }
+
+    public String getCategoryTitle(int categoryInd) {
+        String retVal = null;
+        if (mResult != null) {
+            retVal = mResult.getDataObject().getDataListCat().get(categoryInd).getCategoryTitle();
+        }
+
+        return retVal;
+    }
+
 
     public interface IOnDataConnectivityChangedListener {
         void onConnectivityChanged(boolean isConnected);
