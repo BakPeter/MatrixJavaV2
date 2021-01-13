@@ -3,6 +3,8 @@ package com.bpapps.matrixjavav2;
 import android.app.Application;
 import android.content.Context;
 
+import com.bpapps.matrixjavav2.model.repository.Repository;
+
 public class App extends Application {
     private static App sInstance = null;
 
@@ -19,6 +21,8 @@ public class App extends Application {
         super.onCreate();
 
         sInstance = this;
+
+        Repository.getInstance();
     }
 
     @Override

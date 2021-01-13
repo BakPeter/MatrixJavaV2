@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tvCategoryHeight">20dp</dimen>
+    <dimen name="tvCategoryMarginTop">20dp</dimen>
+    <dimen name="rvCategoryHeight">120dp</dimen>
+    <dimen name="ivHeight">@dimen/rvCategoryHeight</dimen>
+    <dimen name="listItemHeight">@dimen/rvCategoryHeight</dimen>
+    <dimen name="listItemWidth">150dp</dimen>
+    <dimen name="tvListItemHeight">12sp</dimen>
+    <dimen name="list_item_margins">10dp</dimen>
+    <dimen name="tv_list_item_margins">15dp</dimen>
+    <dimen name="tv_splash_screen_welcome_title_margin_top">110dp</dimen>
+    <dimen name="tv_splash_screen_welcome_title_text_size">40sp</dimen>
+    <dimen name="tv_splash_screen_welcome_subtitle_text_size">20sp</dimen>
+    <dimen name="tv_loading_data_msg_text_size">25sp</dimen>
+</resources>

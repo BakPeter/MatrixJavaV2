@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/listItemWidth"
+    android:layout_height="@dimen/listItemHeight"
+    app:cardCornerRadius="6dp"
+    android:layout_margin="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/itemListViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/list_item_margins">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivListItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_error"
+            app:layout_constraintBottom_toTopOf="@+id/tvListItemSubTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvListItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/tv_list_item_margins"
+            android:textColor="@color/tv_list_item_text_color"
+            android:textSize="@dimen/tvListItemHeight"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvListItemSubTitle" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvListItemSubTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/tv_list_item_margins"
+            android:layout_marginBottom="@dimen/tv_list_item_margins"
+            android:textColor="@color/tv_list_item_text_color"
+            android:textSize="@dimen/tvListItemHeight"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

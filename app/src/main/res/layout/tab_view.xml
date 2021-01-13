@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCategory1Name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tvCategoryHeight"
+            android:layout_marginTop="@dimen/tvCategoryMarginTop"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategory1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rvCategoryHeight" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCategory2Name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tvCategoryHeight"
+            android:layout_marginTop="@dimen/tvCategoryMarginTop"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategory2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rvCategoryHeight" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCategory3Name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tvCategoryHeight"
+            android:layout_marginTop="@dimen/tvCategoryMarginTop"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategory3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rvCategoryHeight" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCategory4Name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tvCategoryHeight"
+            android:layout_marginTop="@dimen/tvCategoryMarginTop"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategory4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rvCategoryHeight" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCategory5Name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/tvCategoryHeight"
+            android:layout_marginTop="@dimen/tvCategoryMarginTop"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategory5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rvCategoryHeight" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>

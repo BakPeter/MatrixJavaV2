@@ -2,14 +2,23 @@ package com.bpapps.matrixjavav2.model;
 
 import androidx.annotation.NonNull;
 
+import com.bpapps.matrixjavav2.model.datamodel.DataListCat;
+import com.bpapps.matrixjavav2.model.datamodel.DataListObject;
+import com.bpapps.matrixjavav2.model.datamodel.Result;
 import com.bpapps.matrixjavav2.model.repository.Repository;
 
-public class Model implements Repository.IOnDataConnectivityChangedListener {
+import java.util.List;
+
+public class Model implements Repository.IOnDataConnectivityChangedListener, Repository.IDataLoadListener {
     private static Model sInstance = null;
 
     private Repository mRepository = Repository.getInstance();
 
     private IOnDataConnectivityChangedListener mConnectivityChangedCallBack = null;
+    private IDataLoadListener mDataLoadCallback = null;
+
+    private Model() {
+    }
 
     public static Model getInstance() {
         if (sInstance == null) {
@@ -19,9 +28,6 @@ public class Model implements Repository.IOnDataConnectivityChangedListener {
         return sInstance;
     }
 
-    private Model() {
-    }
-
     @Override
     public void onConnectivityChanged(boolean isConnected) {
         if (mConnectivityChangedCallBack != null) {
@@ -29,12 +35,30 @@ public class Model implements Repository.IOnDataConnectivityChangedListener {
         }
     }
 
+    @Override
+    public void onLoadSuccess(Result result) {
+        if (mDataLoadCallback != null) {
+            mDataLoadCallback.onLoadSuccess(result);
+        }
+    }
+
+    @Override
+    public void onLoadFailure(Throwable error) {
+        if (mDataLoadCallback != null) {
+            mDataLoadCallback.onLoadFailure(error);
+        }
+    }
+
     public boolean getConnectivityStatus() {
         return mRepository.getConnectivityStatus();
     }
 
-    public interface IOnDataConnectivityChangedListener {
-        void onConnectivityChanged(boolean isConnected);
+    public List<DataListCat> getCategories() {
+        return mRepository.getCategories();
+    }
+
+    public List<DataListObject> getItems() {
+        return mRepository.getItems();
     }
 
     public void registerForConnectivityUpdateListener(@NonNull IOnDataConnectivityChangedListener callBack) {
@@ -45,5 +69,25 @@ public class Model implements Repository.IOnDataConnectivityChangedListener {
     public void unRegisterForConnectivityUpdateListener() {
         mRepository.unRegisterForConnectivityUpdateListener();
         mConnectivityChangedCallBack = null;
+    }
+
+    public void registerForDataLoadListener(IDataLoadListener callback) {
+        mDataLoadCallback = callback;
+        mRepository.registerForDataLoadListener(this);
+    }
+
+    public void unRegisterForDataLoadListener() {
+        mDataLoadCallback = null;
+        mRepository.unRegisterForDataLoadListener();
+    }
+
+    public interface IOnDataConnectivityChangedListener {
+        void onConnectivityChanged(boolean isConnected);
+    }
+
+    public interface IDataLoadListener {
+        void onLoadSuccess(Result result);
+
+        void onLoadFailure(Throwable error);
     }
 }

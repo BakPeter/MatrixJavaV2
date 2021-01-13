@@ -72,7 +72,6 @@ public class NetworkUtils {
 
     public interface IOnDataConnectivityChangedListener {
         void onConnectivityChanged(boolean isConnected);
-
     }
 
     public void registerForConnectivityUpdateListener(@NonNull IOnDataConnectivityChangedListener callBack) {
