@@ -1,4 +1,4 @@
-package com.bpapps.matrixjavav2.view;
+package com.bpapps.matrixjavav2.view.fragments;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -19,17 +19,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bpapps.matrixjavav2.App;
 import com.bpapps.matrixjavav2.R;
-import com.bpapps.matrixjavav2.model.datamodel.DataListCat;
-import com.bpapps.matrixjavav2.model.datamodel.DataListObject;
+import com.bpapps.matrixjavav2.model.datamodeldynamicui.DataSetHolder;
 import com.bpapps.matrixjavav2.view.adapters.ItemsShowerAdapter;
 import com.bpapps.matrixjavav2.view.snaphelpers.GravitySnapHelper;
 import com.bpapps.matrixjavav2.viewmodel.MainViewViewModel;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class MainViewFragment extends Fragment implements MainViewViewModel.IOnDataConnectivityChangedListener, ItemsShowerAdapter.IOnItemClickListener, MainViewViewModel.IDataLoadListener {
     private static final String TAG = "TAG.MainViewFragment";
@@ -209,19 +203,25 @@ public class MainViewFragment extends Fragment implements MainViewViewModel.IOnD
         Log.d(TAG, "onItemClick: id = " + id);
     }
 
-    @Override
-    public void onLoadSuccess(List<DataListCat> categories, HashMap<Integer, ArrayList<DataListObject>> items) {
-        tvCategory1.setText(categories.get(0).getCategoryTitle());
-        tvCategory2.setText(categories.get(1).getCategoryTitle());
-        tvCategory3.setText(categories.get(2).getCategoryTitle());
-        tvCategory4.setText(categories.get(3).getCategoryTitle());
-        tvCategory5.setText(categories.get(4).getCategoryTitle());
+//    @Override
+//    public void onLoadSuccess(List<DataListCat> categories, HashMap<Integer, ArrayList<DataListObject>> items) {
+//        tvCategory1.setText(categories.get(0).getCategoryTitle());
+//        tvCategory2.setText(categories.get(1).getCategoryTitle());
+//        tvCategory3.setText(categories.get(2).getCategoryTitle());
+//        tvCategory4.setText(categories.get(3).getCategoryTitle());
+//        tvCategory5.setText(categories.get(4).getCategoryTitle());
+//
+//        mAdapter1.changeDataSet(items.get(categories.get(0).getCatId()));
+//        mAdapter2.changeDataSet(items.get(categories.get(1).getCatId()));
+//        mAdapter3.changeDataSet(items.get(categories.get(2).getCatId()));
+//        mAdapter4.changeDataSet(items.get(categories.get(3).getCatId()));
+//        mAdapter5.changeDataSet(items.get(categories.get(4).getCatId()));
+//    }
 
-        mAdapter1.changeDataSet(items.get(categories.get(0).getCatId()));
-        mAdapter2.changeDataSet(items.get(categories.get(1).getCatId()));
-        mAdapter3.changeDataSet(items.get(categories.get(2).getCatId()));
-        mAdapter4.changeDataSet(items.get(categories.get(3).getCatId()));
-        mAdapter5.changeDataSet(items.get(categories.get(4).getCatId()));
+
+    @Override
+    public void onLoadSuccess(DataSetHolder dataSet) {
+
     }
 
     @Override

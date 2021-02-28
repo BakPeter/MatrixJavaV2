@@ -9,9 +9,11 @@ import com.bpapps.matrixjavav2.model.Model;
 import com.bpapps.matrixjavav2.model.datamodel.DataListCat;
 import com.bpapps.matrixjavav2.model.datamodel.DataListObject;
 import com.bpapps.matrixjavav2.model.datamodel.Result;
+import com.bpapps.matrixjavav2.model.datamodeldynamicui.DataModelDynamicUiUtils;
+import com.bpapps.matrixjavav2.model.datamodeldynamicui.DataSetHolder;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 
 public class MainViewViewModel extends ViewModel implements Model.IOnDataConnectivityChangedListener, Model.IDataLoadListener {
@@ -55,20 +57,20 @@ public class MainViewViewModel extends ViewModel implements Model.IOnDataConnect
 
     @Override
     public void onLoadSuccess(Result result) {
-        List<DataListCat> categories = result.getDataObject().getDataListCat();
-        HashMap<Integer, ArrayList<DataListObject>> items = new HashMap<>(categories.size());
+//        List<DataListCat> categories = result.getDataObject().getDataListCat();
+//        HashMap<Integer, ArrayList<DataListObject>> items = new HashMap<>(categories.size());
+//
+//        for (DataListCat cat :
+//                categories) {
+//            items.put(cat.getCatId(), new ArrayList<DataListObject>());
+//        }
+//
+//        for (DataListObject item :
+//                result.getDataObject().getDataListObject()) {
+//            items.get(item.getCatId()).add(item);
+//        }
 
-        for (DataListCat cat :
-                categories) {
-            items.put(cat.getCatId(), new ArrayList<DataListObject>());
-        }
-
-        for (DataListObject item :
-                result.getDataObject().getDataListObject()) {
-            items.get(item.getCatId()).add(item);
-        }
-
-        mDataLoadCallback.onLoadSuccess(categories, items);
+        mDataLoadCallback.onLoadSuccess(DataModelDynamicUiUtils.getDataSet(result));
     }
 
     @Override
@@ -104,7 +106,9 @@ public class MainViewViewModel extends ViewModel implements Model.IOnDataConnect
     }
 
     public interface IDataLoadListener {
-        void onLoadSuccess(List<DataListCat> categories, HashMap<Integer, ArrayList<DataListObject>> items);
+//        void onLoadSuccess(List<DataListCat> categories, HashMap<Integer, ArrayList<DataListObject>> items);
+//        void onLoadSuccess(Hashtable<DataListCat, ArrayList<DataListObject>> dataSet);
+        void onLoadSuccess(DataSetHolder dataSet);
 
         void onLoadFailure(Throwable error);
     }

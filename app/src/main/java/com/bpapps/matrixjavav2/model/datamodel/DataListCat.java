@@ -3,6 +3,8 @@ package com.bpapps.matrixjavav2.model.datamodel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 public class DataListCat {
     @SerializedName("CatId")
     @Expose
@@ -26,5 +28,18 @@ public class DataListCat {
                 "catId=" + catId +
                 ", categoryTitle='" + categoryTitle + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DataListCat that = (DataListCat) o;
+        return catId.equals(that.catId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(catId);
     }
 }
