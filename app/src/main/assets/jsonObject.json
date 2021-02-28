@@ -306,6 +306,125 @@
             "DAd": "נמל תל אביב"
           }
         ]
+      },
+
+      {
+        "CatId": 6,
+        "Title": "טרקטורוני היער והגולן",
+        "STitle": "הנחות ליחיד",
+        "Imag": "https://mobile.leumi-card.co.il/ImgHandler/GetImage.ashx?origpath=/he-il/Benefits/BenefitsPlus/Atractions/PublishingImages/arnak/TractoroniHayaar/טרקטרוני_הגולן_big.jpg&format=webp&type=b",
+        "Id": 101069,
+        "DataListAddr": [
+          {
+            "Addr": "רמת נפתלי",
+            "DAd": "מושב רמת נפתלי"
+          }
+        ]
+      },
+      {
+        "CatId": 6,
+        "Title": "מסע באיזי נהיגה",
+        "STitle": "הנחות ליחיד",
+        "Imag": "https://mobile.leumi-card.co.il/ImgHandler/GetImage.ashx?origpath=/he-il/Benefits/BenefitsPlus/Atractions/PublishingImages/arnak/masa_beizi/מסע_באיזי_big.jpg&format=webp&type=b",
+        "Id": 101076,
+        "DataListAddr": [
+          {
+            "Addr": "שאר ישוב",
+            "DAd": "שאר ישוב"
+          }
+        ]
+      },
+      {
+        "CatId": 6,
+        "Title": "חי פארק קרית מוצקין",
+        "STitle": "הנחות ליחיד",
+        "Imag": "https://mobile.leumi-card.co.il/ImgHandler/GetImage.ashx?origpath=/he-il/Benefits/BenefitsPlus/PublishingImages/Atraction/ChaiPark/big.jpg&format=webp&type=b",
+        "Id": 101086,
+        "DataListAddr": [
+          {
+            "Addr": "החשמונאים 79, קרית מוצקין",
+            "DAd": "החשמונאים 79,קרית מוצקין"
+          }
+        ]
+      },
+      {
+        "CatId": 6,
+        "Title": "אטרקטיבי",
+        "STitle": "הנחות ליחיד",
+        "Imag": "https://www.leumi-card.co.il/he-il/Benefits/BenefitsPlus/Atractions/PublishingImages/arnak/atraktivi/Extremesport_big.min.jpg",
+        "Id": 101137,
+        "DataListAddr": [
+          {
+            "Addr": "אילת",
+            "DAd": "חוף נביעות"
+          }
+        ]
+      },
+      {
+        "CatId": 6,
+        "Title": "אקווה ספורט מועדון צלילה",
+        "STitle": "הנחות ליחיד",
+        "Imag": "https://mobile.leumi-card.co.il/ImgHandler/GetImage.ashx?origpath=/he-il/Benefits/BenefitsPlus/Atractions/PublishingImages/arnak/aqwa_sport_tzlila/אקווה_ספורט_צלילה_big.jpg&format=webp&type=b",
+        "Id": 101145,
+        "DataListAddr": [
+          {
+            "Addr": "אילת",
+            "DAd": "חוף אלמוג"
+          }
+        ]
+      },
+
+      {
+        "CatId": 7,
+        "Title": "מרכבות חוות פיליפ",
+        "STitle": "הנחות ליחיד",
+        "Imag": "https://www.leumi-card.co.il/he-il/Benefits/BenefitsPlus/PublishingImages/Atraction/ChavatPhilip/MerkavotHavatPhilip_big.min.jpg",
+        "Id": 101215,
+        "NOV": "15",
+        "DataListAddr": [
+          {
+            "DAd": "צפונית לצומת בית קמה"
+          }
+        ]
+      },
+      {
+        "CatId": 7,
+        "Title": "גני חוגה בית שאן",
+        "STitle": "הנחה על כרטיס ליחיד",
+        "Imag": "https://www.leumi-card.co.il/he-il/Benefits/BenefitsPlus/Atractions/PublishingImages/arnak/ganey%20hoga/GaneyHuga_big.min.jpg",
+        "Id": 101968,
+        "DataListAddr": [
+          {
+            "Addr": "בית שאן",
+            "DAd": "עמק המעיינות"
+          }
+        ]
+      },
+      {
+        "CatId": 7,
+        "Title": "פיינטבול ישראל - כפר סבא",
+        "STitle": "הנחות ליחיד",
+        "Imag": "https://mobile.leumi-card.co.il/ImgHandler/GetImage.ashx?origpath=/he-il/Benefits/BenefitsPlus/PublishingImages/Atraction/PaintballIsrael/big.jpg&format=webp&type=b",
+        "Id": 102807,
+        "DataListAddr": [
+          {
+            "Addr": "בית ברל 0, כפר סבא",
+            "DAd": "בית ברל"
+          }
+        ]
+      },
+      {
+        "CatId": 7,
+        "Title": "פיינטבול ישראל - חיפה",
+        "STitle": "כרטיס כניסה 1+1/הנחות ליחיד",
+        "Imag": "https://mobile.leumi-card.co.il/ImgHandler/GetImage.ashx?origpath=/he-il/Benefits/BenefitsPlus/PublishingImages/Atraction/PaintballIsrael/big.jpg&format=webp&type=b",
+        "Id": 102808,
+        "DataListAddr": [
+          {
+            "Addr": "קדושי יאסי 0, חיפה",
+            "DAd": "מרכז הקונגרסים"
+          }
+        ]
       }
     ]
 
@@ -314,7 +433,9 @@
       {"CatId":2 ,"CTitle":"קטגוריה 2"},
       {"CatId":3 ,"CTitle":"קטגוריה 3"},
       {"CatId":4 ,"CTitle":"קטגוריה 4"},
-      {"CatId":5 ,"CTitle":"קטגוריה 5"}
+      {"CatId":5 ,"CTitle":"קטגוריה 5"},
+      {"CatId":6 ,"CTitle":"קטגוריה 6"},
+      {"CatId":7 ,"CTitle":"קטגוריה 7"}
     ]
   }
 }
